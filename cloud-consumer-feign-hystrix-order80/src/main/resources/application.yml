@@ -8,3 +8,8 @@ eureka:
     register-with-eureka: false
 ribbon:
   ReadTimeout: 5000
+
+#开启配置
+feign:
+  hystrix:
+    enabled: true
