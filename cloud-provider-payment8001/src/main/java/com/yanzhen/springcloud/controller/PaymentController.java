@@ -66,4 +66,10 @@ public class PaymentController {
     public String paymentLb(){
         return this.serverPort;
     }
+
+    @GetMapping("/payment/timeout")
+    public String timeout() throws InterruptedException {
+        Thread.sleep(3000);
+        return serverPort;
+    }
 }
