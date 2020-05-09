@@ -1,0 +1,35 @@
+server:
+  port: 8802
+
+spring:
+  application:
+    name: cloud-rabbitmq-consumer
+
+  cloud:
+    stream:
+      binders:
+        defaultRabbit:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: localhost
+                username: guest
+                password: guest
+                port: 5672
+      bindings:
+        input:
+          destination: studyExchange
+          content-type: application/json
+          binder: defaultRabbit
+          group: yanzhen
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+  instance:
+    lease-expiration-duration-in-seconds: 5   #eureka服务端总共等待你心跳的时间默认为90  超过就移除微服务
+    lease-renewal-interval-in-seconds: 2     #eureka客户端隔多长时间向服务端发送心跳
+    prefer-ip-address: true
+    instance-id: receive8802.com
